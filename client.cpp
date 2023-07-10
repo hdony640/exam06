@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdony <hdony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:21:00 by hdony             #+#    #+#             */
-/*   Updated: 2023/07/06 17:09:53 by hdony            ###   ########.fr       */
+/*   Updated: 2023/07/10 11:51:31 by hdony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ int main(int ac, char *argv[])
         perror("connect");
         return (1);
     }
+    if ( (ret = read(client_fd, buff, BUFF_SIZE) ) < 0)
+        {
+            std::cerr << "Fatal error (read)\n";
+            perror("read");
+            return (1);
+        }
+        std::cout << "server accepted the connection " << buff;
     // std::cout << buff;
     //send a request to the server
     while (true)
